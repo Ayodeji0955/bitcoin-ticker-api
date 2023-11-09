@@ -7,19 +7,37 @@ const app = express();
 app.use(bodyParser.urlencoded({ extended: true }));
 
 
+// app.get('/', (req, res) => {
+
+//     axios.get('https://apiv2.bitcoinaverage.com/indices/global/ticker/all?crypto=BTC&fiat=USD,EUR')
+//     .then(response => {
+//         console.log(res);
+
+//         res.send(res.data.status)
+//     })
+//     .catch(error => {
+//         console.log(error);
+//     });
+    
+// });
+
 app.get('/', (req, res) => {
 
     axios.get('https://apiv2.bitcoinaverage.com/indices/global/ticker/all?crypto=BTC&fiat=USD,EUR')
-    .then(response => {
-        console.log(res);
-        //console.log
-        res.send(res.data.status)
-    })
-    .catch(error => {
-        console.log(error);
-    });
-    // res.sendFile(__dirname + '/index.html');
-});
+
+        .then(function (response) {
+            // handle success
+            console.log(response.data.statusCode);
+        })
+        .catch(function (error) {
+            // handle error
+            console.log(error);
+        })
+        .finally(function () {
+            // always executed
+        });
+
+})
 
 app.post('/', (req, res) => {
     console.log(req.body.crypto);
