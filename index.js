@@ -27,7 +27,12 @@ app.get('/', (req, res) => {
 
         .then(function (response) {
             // handle success
-            console.log(response.data.statusCode);
+            let data = JSON.parse(body);
+            let price = data.last;
+
+            console.log(price);
+
+            
         })
         .catch(function (error) {
             // handle error
